@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/lbAnoLetivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/labelAnoLetivo"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editDisciplina"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/lbDisciplina"
+            app:layout_constraintTop_toBottomOf="@+id/lbDisciplina" />
+
+        <EditText
+            android:id="@+id/editProfessor"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/lbProfessor"
+            app:layout_constraintTop_toBottomOf="@+id/lbProfessor" />
+
+        <EditText
+            android:id="@+id/editAtividade"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/lbAtividade"
+            app:layout_constraintTop_toBottomOf="@+id/lbAtividade" />
+
+        <EditText
+            android:id="@+id/editNota"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:ems="10"
+            android:inputType="number|numberDecimal"
+            app:layout_constraintStart_toStartOf="@+id/lbNota"
+            app:layout_constraintTop_toBottomOf="@+id/lbNota" />
+
+        <Button
+            android:id="@+id/btSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:onClick="actionSalvar"
+            android:text="Salvar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNota" />
+
+        <Button
+            android:id="@+id/btLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:onClick="actionLimpar"
+            android:text="Limpar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btSalvar" />
+
+        <!--Button
+            android:id="@+id/btExibirNotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="actionExibirNotas"
+            android:text="Exibir Notas"
+            app:layout_constraintEnd_toStartOf="@+id/btLimpar"
+            app:layout_constraintStart_toEndOf="@+id/btSalvar"
+            app:layout_constraintTop_toTopOf="@+id/btSalvar" /-->
+
+        <Spinner
+            android:id="@+id/spAno"
+            android:layout_width="120dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="3dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintStart_toStartOf="@+id/lbAnoLetivo"
+            app:layout_constraintTop_toBottomOf="@+id/lbAnoLetivo" />
+
+        <TextView
+            android:id="@+id/lbBimestre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/labelBimestre"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/spAno"
+            app:layout_constraintTop_toBottomOf="@+id/spAno" />
+
+        <TextView
+            android:id="@+id/lbDisciplina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/labelDisciplina"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/rgBimestres"
+            app:layout_constraintTop_toBottomOf="@+id/rgBimestres" />
+
+        <TextView
+            android:id="@+id/lbProfessor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/labelProfessor"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/editDisciplina"
+            app:layout_constraintTop_toBottomOf="@+id/editDisciplina" />
+
+        <TextView
+            android:id="@+id/lbAtividade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/labelAtividade"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/editProfessor"
+            app:layout_constraintTop_toBottomOf="@+id/editProfessor" />
+
+        <TextView
+            android:id="@+id/lbNota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/labelNota"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/editAtividade"
+            app:layout_constraintTop_toBottomOf="@+id/editAtividade" />
+
+        <RadioGroup
+            android:id="@+id/rgBimestres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toStartOf="@+id/lbBimestre"
+            app:layout_constraintTop_toBottomOf="@+id/lbBimestre">
+
+            <RadioButton
+                android:id="@+id/rb1Bimestre"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/label1Bi" />
+
+            <RadioButton
+                android:id="@+id/rb2Bimestre"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/label2Bi" />
+
+            <RadioButton
+                android:id="@+id/rb3Bimestre"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/label3Bi" />
+
+            <RadioButton
+                android:id="@+id/rb4Bimestre"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="@string/label4Bi" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cbRascunho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/labelRascunho"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editNota"
+            app:layout_constraintTop_toBottomOf="@+id/lbNota" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

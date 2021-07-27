@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="anosLetivos">
+        <item>@string/ano2020</item>
+        <item>@string/ano2021</item>
+        <item>@string/ano2022</item>
+    </string-array>
+
+</resources>

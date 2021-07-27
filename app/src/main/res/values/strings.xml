@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">boletim</string>
+    <string name="labelDisciplina">Disciplina</string>
+    <string name="labelBimestre">Bimestre</string>
+    <string name="labelAnoLetivo">Ano Letivo</string>
+    <string name="labelProfessor">Professor</string>
+    <string name="labelAtividade">Atividade</string>
+    <string name="labelNota">Nota</string>
+    <string name="label1Bi">1º</string>
+    <string name="label2Bi">2º</string>
+    <string name="label3Bi">3º</string>
+    <string name="label4Bi">4º</string>
+    <string name="ano2020">2020</string>
+    <string name="ano2021">2021</string>
+    <string name="ano2022">2022</string>
+    <string name="labelRascunho">Rascunho</string>
+
+    <string name="msgNenhum">"Nenhum(a) "</string>
+    <string name="msgFoiSelecionado">" foi selecionado!"</string>
+    <string name="msgFoiInformada">" foi informada!"</string>
+
+</resources>
