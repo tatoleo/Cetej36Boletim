@@ -16,7 +16,10 @@
     <string name="labelRascunho">Rascunho</string>
 
     <string name="msgNenhum">"Nenhum(a) "</string>
-    <string name="msgFoiSelecionado">" foi selecionado!"</string>
-    <string name="msgFoiInformada">" foi informada!"</string>
+    <string name="msgFoiSelecionado">" foi selecionado(a)!"</string>
+    <string name="msgFoiInformada">" foi informado(a)!"</string>
+    <string name="msgCamposLimpos">Campos limpos!</string>
+    <string name="msgSemDados">Sem dados salvos!</string>
+    <string name="msgDadosSalvos">Dados salvos com sucesso!</string>
 
 </resources>

@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             // Disciplina
             notaDTO.setDisciplina(editTextDisciplina.getText().toString());
             if(notaDTO.getDisciplina() == null || notaDTO.getDisciplina().isEmpty()){
+                editTextDisciplina.requestFocus();
                 throw new MyException(getString(R.string.msgNenhum)
                         + getString(R.string.labelDisciplina) + getString(R.string.msgFoiInformada));
             }
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             // Professor
             notaDTO.setProfessor(editTextProfessor.getText().toString());
             if(notaDTO.getProfessor() == null || notaDTO.getProfessor().isEmpty()){
+                editTextProfessor.requestFocus();
                 throw new MyException(getString(R.string.msgNenhum)
                         + getString(R.string.labelProfessor) + getString(R.string.msgFoiInformada));
             }
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             // Atividade
             notaDTO.setAtividade(editTextAtividade.getText().toString());
             if(notaDTO.getAtividade() == null || notaDTO.getAtividade().isEmpty()){
+                editTextAtividade.requestFocus();
                 throw new MyException(getString(R.string.msgNenhum)
                         + getString(R.string.labelAtividade) + getString(R.string.msgFoiInformada));
             }
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             // Nota
             notaDTO.setNota(editTextNota.getText().toString());
             if(notaDTO.getNota() == null || notaDTO.getNota().isEmpty()){
+                editTextNota.requestFocus();
                 throw new MyException(getString(R.string.msgNenhum)
                         + getString(R.string.labelNota) + getString(R.string.msgFoiInformada));
             }
@@ -224,15 +228,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             NotaDTO notaDTO = popularNota();
             baseDadosMemoria = salvarNotasBaseDados(baseDadosMemoria, notaDTO);
-            mensagem = "Nota Salva com Sucesso! \n "  + notaDTO.toString();
+            mensagem = getString(R.string.msgDadosSalvos) + " \n "  + notaDTO.toString();
+            limparTela();
         } catch (MyException me) {
-            System.out.println("MENSAGEM: " + me.getMessage());
             mensagem = me.getMessage();
         }
 
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
-
-        limparTela();
 
     }
 
@@ -244,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void actionLimpar(View view){
         limparTela();
+        Toast.makeText(this, R.string.msgCamposLimpos, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -273,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         if (baseDadosMemoria != null) {
             Toast.makeText(this, baseDadosMemoria.toString(), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Sem dados Salvos!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.msgSemDados, Toast.LENGTH_LONG).show();
         }
     }
 
