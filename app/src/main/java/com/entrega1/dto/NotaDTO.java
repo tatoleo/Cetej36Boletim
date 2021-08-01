@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * DTO para salvar as Notas
  * @aythor LeonardoSilva
- * @since 27/07/2014
+ * @since 27/07/2021
  */
 public class NotaDTO implements Serializable {
 
@@ -80,15 +80,15 @@ public class NotaDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "NotaDTO{" +
-                "anoLetivo='" + anoLetivo + '\'' +
-                ", bimestre='" + bimestre + '\'' +
-                ", disciplina='" + disciplina + '\'' +
-                ", professor='" + professor + '\'' +
-                ", atividade='" + atividade + '\'' +
-                ", nota='" + nota + '\'' +
-                ", rascunho='" + rascunho + '\'' +
-                '}';
+        return "Nota:\n" +
+                "   anoLetivo:   " + anoLetivo + "\n" +
+                "   bimestre   " + bimestre + "\n" +
+                "   disciplina   " + disciplina + "\n" +
+                "   professor   " + professor + "\n" +
+                "   atividade   " + atividade + "\n" +
+                "   nota   " + nota + "\n" +
+                "   rascunho   " + rascunho + "\n"
+                ;
     }
 
 }

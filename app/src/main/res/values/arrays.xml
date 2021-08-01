@@ -7,4 +7,141 @@
         <item>@string/ano2022</item>
     </string-array>
 
+    <!-- String Arrays para Activity Lista Notas    -->
+    <string-array name="listaAnoLetivo">
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+        <item>@string/ano2020</item>
+    </string-array>
+
+    <string-array name="listaBimestre">
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label1Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label2Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+        <item>@string/label3Bi</item>
+    </string-array>
+
+    <string-array name="listaDisciplina">
+        <item>@string/disciplinaBiologia</item>
+        <item>@string/disciplinaEducacaoFisica</item>
+        <item>@string/disciplinaFisica</item>
+        <item>@string/disciplinaHistoria</item>
+        <item>@string/disciplinaMatematica</item>
+        <item>@string/disciplinaPortugues</item>
+        <item>@string/disciplinaSociologia</item>
+        <item>@string/disciplinaQuimica</item>
+        <item>@string/disciplinaBiologia</item>
+        <item>@string/disciplinaEducacaoFisica</item>
+        <item>@string/disciplinaFisica</item>
+        <item>@string/disciplinaHistoria</item>
+        <item>@string/disciplinaMatematica</item>
+        <item>@string/disciplinaPortugues</item>
+        <item>@string/disciplinaSociologia</item>
+        <item>@string/disciplinaQuimica</item>
+        <item>@string/disciplinaBiologia</item>
+        <item>@string/disciplinaEducacaoFisica</item>
+        <item>@string/disciplinaFisica</item>
+        <item>@string/disciplinaHistoria</item>
+        <item>@string/disciplinaMatematica</item>
+        <item>@string/disciplinaPortugues</item>
+        <item>@string/disciplinaSociologia</item>
+        <item>@string/disciplinaQuimica</item>
+    </string-array>
+
+
+    <string-array name="listaProfessor">
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJose</item>
+        <item>@string/professorLeonardo</item>
+        <item>@string/professorMario</item>
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJose</item>
+        <item>@string/professorLeonardo</item>
+        <item>@string/professorMario</item>
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJoao</item>
+        <item>@string/professorJose</item>
+        <item>@string/professorLeonardo</item>
+        <item>@string/professorMario</item>
+        <item>@string/professorCarlos</item>
+        <item>@string/professorJoao</item>
+    </string-array>
+
+    <string-array name="listaAtividade">
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeApresentacao</item>
+        <item>@string/atividadeTrabalho</item>
+        <item>@string/atividadeProva</item>
+        <item>@string/atividadeProva</item>
+    </string-array>
+
 </resources>

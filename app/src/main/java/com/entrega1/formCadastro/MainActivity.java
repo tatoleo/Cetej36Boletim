@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Popular Spinner Anos via Código
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      */
     private void popularSpinnerAnos(){
         /*
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Popular Objeto NotaDTO com os Campos da Activity
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @return NotaDTO
      * @throws MyException
      */
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Salva o objeto NotaDTO em um Array de Notas do Objeto do tipo BaseDadosMemoria
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @param base  : BaseDadosMemoria
      * @param nota  : NotaDTO
      * @return
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Obtém o valor selecionado no RadioGroup de Bimestres
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @param rgBimestres RadioGroup
      * @return String
      * @throws MyException
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Ação do botão Salvar
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @param view  : View
      */
     public void actionSalvar(View view){
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Ação do botão Limpar
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @param view  : View
      */
     public void actionLimpar(View view){
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Limpa os campos da Activity
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      */
     private void limparTela(){
         rgBimestres.clearCheck();
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Ação do botão Exibir Notas
      * @aythor LeonardoSilva
-     * @since 27/07/2014
+     * @since 27/07/2021
      * @param view  : View
      */
     public void actionExibirNotas(View view){

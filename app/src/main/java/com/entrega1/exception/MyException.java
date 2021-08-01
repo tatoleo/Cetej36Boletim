@@ -3,7 +3,7 @@ package com.entrega1.exception;
 /**
  * Exception criada para transportar mensagem
  * @aythor LeonardoSilva
- * @since 27/07/2014
+ * @since 27/07/2021
  */
 public class MyException  extends Exception {
 

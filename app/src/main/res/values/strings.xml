@@ -1,5 +1,8 @@
 <resources>
+
     <string name="app_name">boletim</string>
+
+    <!-- #### Labels #### -->
     <string name="labelDisciplina">Disciplina</string>
     <string name="labelBimestre">Bimestre</string>
     <string name="labelAnoLetivo">Ano Letivo</string>
@@ -10,11 +13,33 @@
     <string name="label2Bi">2º</string>
     <string name="label3Bi">3º</string>
     <string name="label4Bi">4º</string>
+    <string name="labelRascunho">Rascunho</string>
+
+    <!-- #### Valores Estáticos #### -->
     <string name="ano2020">2020</string>
     <string name="ano2021">2021</string>
     <string name="ano2022">2022</string>
-    <string name="labelRascunho">Rascunho</string>
 
+    <string name="disciplinaBiologia">Biologia</string>
+    <string name="disciplinaEducacaoFisica">Educação Física</string>
+    <string name="disciplinaHistoria">História</string>
+    <string name="disciplinaPortugues">Português</string>
+    <string name="disciplinaMatematica">Matemática</string>
+    <string name="disciplinaQuimica">Química</string>
+    <string name="disciplinaFisica">Física</string>
+    <string name="disciplinaSociologia">Sociologia</string>
+
+    <string name="professorJoao">João Silva</string>
+    <string name="professorMario">Mario Quintana</string>
+    <string name="professorJose">José Gonçalves</string>
+    <string name="professorLeonardo">Leonardo Ramos</string>
+    <string name="professorCarlos">Carlos Santos</string>
+
+    <string name="atividadeTrabalho">Trabalho</string>
+    <string name="atividadeApresentacao">Apresentação</string>
+    <string name="atividadeProva">Prova</string>
+
+    <!-- #### Mensagens #### -->
     <string name="msgNenhum">"Nenhum(a) "</string>
     <string name="msgFoiSelecionado">" foi selecionado(a)!"</string>
     <string name="msgFoiInformada">" foi informado(a)!"</string>
