@@ -15,7 +15,7 @@ public class BaseDadosMemoria implements Serializable {
     private ArrayList<NotaDTO> listaNotas;
 
     public BaseDadosMemoria() {
-
+        listaNotas = new ArrayList<>();
     }
 
     public BaseDadosMemoria(ArrayList<NotaDTO> listaNotas) {

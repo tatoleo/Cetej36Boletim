@@ -2,6 +2,10 @@
 
     <string name="app_name">boletim</string>
 
+    <string name="labelActvCadstroNota">Cadastro Nota</string>
+    <string name="labelActvNotas">Notas Cadastradas</string>
+    <string name="labelActvSobre">Sobre</string>
+
     <!-- #### Labels #### -->
     <string name="labelDisciplina">Disciplina</string>
     <string name="labelBimestre">Bimestre</string>
@@ -14,6 +18,22 @@
     <string name="label3Bi">3º</string>
     <string name="label4Bi">4º</string>
     <string name="labelRascunho">Rascunho</string>
+
+    <string name="labelAluno">Aluno</string>
+    <string name="labelLeonardo">Leonardo Ramos da Silva</string>
+    <string name="labelCurso">Curso</string>
+    <string name="labelEspecializacao">Especialização JAVA XX</string>
+    <string name="labelEmail">Email</string>
+    <string name="labelEmailAutor">tato.leo@gmail.com</string>
+    <string name="labelDescricao">Descrição</string>
+    <string name="labelDescricaoText">Cadastrar as disciplinas que está cursando e suas notas bimestrais de cada atividade. Sendo assim, com as disciplinas e notas cadastradas, o App mostrará as médias e possibilitará o acompanhamento mais simples do rendimento escolar. No App será mais fácil a visualização de quais as disciplinas está indo bem e quais precisa reforçar os estudos.</string>
+
+    <!-- #### Botões #### -->
+    <string name="btSalvar">Salvar</string>
+    <string name="btLimpar">Limpar</string>
+    <string name="btExibirNotas">Exibir Notas</string>
+    <string name="btSobre">Sobre</string>
+    <string name="btAdicionar">Adicionar</string>
 
     <!-- #### Valores Estáticos #### -->
     <string name="ano2020">2020</string>

@@ -2,6 +2,8 @@ package com.entrega1.formCadastro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.entrega1.dto.BaseDadosMemoria;
 import com.entrega1.dto.NotaDTO;
 import com.entrega1.exception.MyException;
+import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
 
@@ -30,12 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
     private CheckBox cbRascunho;
 
-    private BaseDadosMemoria baseDadosMemoria;
+    private int modo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setTitle(R.string.labelActvCadstroNota);
 
         spAnos = findViewById(R.id.spAno);
 
@@ -49,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         cbRascunho    = findViewById(R.id.cbRascunho);
 
         popularSpinnerAnos();
+
+        // recupera intent
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null ){
+            modo = bundle.getInt(Constantes.MODO, 0);
+        }
     }
 
     /**
@@ -57,31 +70,6 @@ public class MainActivity extends AppCompatActivity {
      * @since 27/07/2021
      */
     private void popularSpinnerAnos(){
-        /*
-         * ****************************
-         * Popular Manual
-         * ****************************
-         */
-//        ArrayList<String> listaAnos = new ArrayList<>();
-//        listaAnos.add("AEEE");
-//        listaAnos.add("23");
-//        listaAnos.add("345");
-
-//        ArrayAdapter<String> adapterAnos = new ArrayAdapter<>(this,
-//                android.R.layout.simple_list_item_1,
-//                listaAnos);
-
-//        spAnos.setAdapter(adapterAnos);
-
-        /*
-         * ****************************
-         * obter ArrayString
-         * ****************************
-         */
-
-//        String[] arrayString = getResources().getStringArray(R.array.anosLetivos);
-
-        getString(R.string.label1Bi);
         /*
          * ****************************
          * Criar Adapter direto por StringArray
@@ -225,17 +213,41 @@ public class MainActivity extends AppCompatActivity {
     public void actionSalvar(View view){
 
         String mensagem = "";
+        NotaDTO notaDTO = null;
         try {
-            NotaDTO notaDTO = popularNota();
-            baseDadosMemoria = salvarNotasBaseDados(baseDadosMemoria, notaDTO);
-            mensagem = getString(R.string.msgDadosSalvos) + " \n "  + notaDTO.toString();
+            notaDTO = popularNota();
             limparTela();
         } catch (MyException me) {
             mensagem = me.getMessage();
+            Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
         }
+        finalizarActivity(notaDTO);
+    }
 
-        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+    /**
+     * Finaliza a Activity verificando se o modo é Pedir Nota
+     * @aythor LeonardoSilva
+     * @since 16/08/2021
+     * @param notaDTO
+     */
+    private void finalizarActivity(NotaDTO notaDTO){
+        Intent intentRetorno = new Intent();
+        if (modo == Constantes.PEDIR_NOTA && notaDTO != null) {
+            intentRetorno.putExtra(Constantes.VALOR_NOTA, notaDTO);
+            setResult(Activity.RESULT_OK, intentRetorno);
+        } else {
+            setResult(Activity.RESULT_CANCELED, intentRetorno);
+        }
+        finish();
 
+    }
+
+    /**
+     * SObrescreve o método back do SO para chamar o finalizarActivity
+     */
+    @Override
+    public void onBackPressed() {
+        finalizarActivity(null);
     }
 
     /**
@@ -266,18 +278,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Ação do botão Exibir Notas
-     * @aythor LeonardoSilva
-     * @since 27/07/2021
-     * @param view  : View
-     */
-    public void actionExibirNotas(View view){
-        if (baseDadosMemoria != null) {
-            Toast.makeText(this, baseDadosMemoria.toString(), Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, R.string.msgSemDados, Toast.LENGTH_LONG).show();
-        }
-    }
 
 }

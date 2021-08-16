@@ -1,7 +1,10 @@
 package com.entrega1.formCadastro;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +13,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.entrega1.adapter.ListaNotasAdapter;
+import com.entrega1.dto.BaseDadosMemoria;
 import com.entrega1.dto.NotaDTO;
+import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +29,14 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     private ListView listViewNotas;
 
+    private BaseDadosMemoria baseDadosMemoria = new BaseDadosMemoria();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_notas);
+
+        setTitle(R.string.labelActvNotas);
 
         listViewNotas = findViewById(R.id.listViewNotas);
 
@@ -41,7 +50,20 @@ public class ListaNotasActivity extends AppCompatActivity {
             }
         });
 
-        popularListView();
+        popularListView(null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constantes.PEDIR_NOTA && resultCode == Activity.RESULT_OK) {
+            NotaDTO notaDTO = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
+            if (notaDTO != null) {
+                popularListView(notaDTO);
+                Toast.makeText(this, R.string.msgDadosSalvos, Toast.LENGTH_LONG).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     /**
@@ -49,17 +71,22 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @aythor LeonardoSilva
      * @since 31/07/2021
      */
-    private void popularListView(){
+    private void popularListView(NotaDTO notaDTO){
 
-        ArrayList<NotaDTO> listaNotas = listarNotas();
+        ArrayList<NotaDTO> listaNotas = baseDadosMemoria.getListaNotas();
 
-        ListaNotasAdapter adapterNotas = new ListaNotasAdapter(this, listaNotas);
-        listViewNotas.setAdapter(adapterNotas);
+        if (listaNotas == null) {
+            listaNotas = new ArrayList<>();
+        }
+        if (notaDTO != null) {
+            listaNotas.add(notaDTO);
+            listViewNotas.deferNotifyDataSetChanged();
+        } else {
+//        ArrayList<NotaDTO> listaNotas = listarNotasArrayString();
+            ListaNotasAdapter adapterNotas = new ListaNotasAdapter(this, listaNotas);
+            listViewNotas.setAdapter(adapterNotas);
+        }
 
-//        ArrayAdapter<NotaDTO> adapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_list_item_1, listaNotas);
-//
-//        listViewNotas.setAdapter(adapter);
 
     }
 
@@ -69,7 +96,7 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @since 31/07/2021
      * @return ArrayList<NotaDTO>
      */
-    private ArrayList<NotaDTO> listarNotas(){
+    private ArrayList<NotaDTO> listarNotasArrayString(){
 
         ArrayList<NotaDTO> listaNotas = new ArrayList<>();
 
@@ -100,5 +127,23 @@ public class ListaNotasActivity extends AppCompatActivity {
             listaNotas.add(notaDTO);
         }
         return listaNotas;
+    }
+
+
+    /**
+     * Action para a Activity Sobre
+     * @aythor LeonardoSilva
+     * @since 16/08/2021
+     * @param view
+     */
+    public void actionSobre(View view){
+        Intent intent = new Intent(this, SobreActivity.class);
+        startActivity(intent);
+    }
+
+    public void actionAdicionar(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Constantes.MODO, Constantes.PEDIR_NOTA);
+        startActivityForResult(intent, Constantes.PEDIR_NOTA);
     }
 }
