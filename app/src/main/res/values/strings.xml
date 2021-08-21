@@ -2,7 +2,8 @@
 
     <string name="app_name">boletim</string>
 
-    <string name="labelActvCadstroNota">Cadastro Nota</string>
+    <string name="labelActvCadstrarNota">Cadastrar Nota</string>
+    <string name="labelActvAlterarNota">Alterar Nota</string>
     <string name="labelActvNotas">Notas Cadastradas</string>
     <string name="labelActvSobre">Sobre</string>
 
@@ -34,6 +35,8 @@
     <string name="btExibirNotas">Exibir Notas</string>
     <string name="btSobre">Sobre</string>
     <string name="btAdicionar">Adicionar</string>
+    <string name="btEditar">Editar</string>
+    <string name="btExcluir">Excluir</string>
 
     <!-- #### Valores Estáticos #### -->
     <string name="ano2020">2020</string>
@@ -66,5 +69,6 @@
     <string name="msgCamposLimpos">Campos limpos!</string>
     <string name="msgSemDados">Sem dados salvos!</string>
     <string name="msgDadosSalvos">Dados salvos com sucesso!</string>
+    <string name="msgDadosAlterados">Dados alterados com sucesso!</string>
 
 </resources>

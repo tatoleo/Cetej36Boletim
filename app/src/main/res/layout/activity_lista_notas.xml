@@ -10,25 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btAdicionar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetLeft="15dp"
-            android:insetRight="15dp"
-            android:onClick="actionAdicionar"
-            android:text="@string/btAdicionar" />
-
-        <Button
-            android:id="@+id/btSobre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="actionSobre"
-            android:text="@string/btSobre" />
-
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <ListView
         android:id="@+id/listViewNotas"

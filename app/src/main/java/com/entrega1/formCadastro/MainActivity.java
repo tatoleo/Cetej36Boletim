@@ -1,10 +1,13 @@
 package com.entrega1.formCadastro;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle(R.string.labelActvCadstroNota);
+        setTitle(R.string.labelActvCadstrarNota);
 
         spAnos = findViewById(R.id.spAno);
 
@@ -61,6 +64,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (bundle != null ){
             modo = bundle.getInt(Constantes.MODO, 0);
+
+            if (modo == Constantes.PEDIR_NOTA){
+                setTitle(getString(R.string.labelActvCadstrarNota));
+
+            } else if (modo == Constantes.ALTERAR_NOTA){
+                setTitle(getString(R.string.labelActvAlterarNota));
+                NotaDTO notaDTO = (NotaDTO) intent.getSerializableExtra(Constantes.VALOR_NOTA);
+                if (notaDTO != null) {
+                    popularCamposTelaNota(notaDTO);
+                }
+            }
+
         }
     }
 
@@ -143,13 +158,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Salva o objeto NotaDTO em um Array de Notas do Objeto do tipo BaseDadosMemoria
+     * Popular Campos Tela com a NotaDTO
      * @aythor LeonardoSilva
-     * @since 27/07/2021
-     * @param base  : BaseDadosMemoria
-     * @param nota  : NotaDTO
-     * @return
+     * @since 20/08/2021
+     * @param notaDTO : NotaDTO
      */
+    private void popularCamposTelaNota(NotaDTO notaDTO) {
+        spAnos.setSelection(2);
+        rgBimestres.setSelected(true);
+        editTextDisciplina.setText(notaDTO.getDisciplina());
+        editTextProfessor.setText(notaDTO.getProfessor());
+        editTextAtividade.setText(notaDTO.getAtividade());
+        editTextNota.setText(notaDTO.getNota());
+        cbRascunho.setChecked(notaDTO.getRascunho());
+    }
+
+
+
+        /**
+         * Salva o objeto NotaDTO em um Array de Notas do Objeto do tipo BaseDadosMemoria
+         * @aythor LeonardoSilva
+         * @since 27/07/2021
+         * @param base  : BaseDadosMemoria
+         * @param nota  : NotaDTO
+         * @return
+         */
     public static BaseDadosMemoria salvarNotasBaseDados(BaseDadosMemoria base, NotaDTO nota){
 
         if (base == null) {
@@ -232,7 +265,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void finalizarActivity(NotaDTO notaDTO){
         Intent intentRetorno = new Intent();
-        if (modo == Constantes.PEDIR_NOTA && notaDTO != null) {
+        if (notaDTO != null &&
+                (modo == Constantes.PEDIR_NOTA  || modo == Constantes.ALTERAR_NOTA )) {
             intentRetorno.putExtra(Constantes.VALOR_NOTA, notaDTO);
             setResult(Activity.RESULT_OK, intentRetorno);
         } else {
@@ -278,5 +312,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static void actionAlterarNota(AppCompatActivity activity, NotaDTO nota){
 
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.putExtra(Constantes.MODO, Constantes.ALTERAR_NOTA);
+        intent.putExtra(Constantes.VALOR_NOTA, nota);
+        activity.startActivityForResult(intent,  Constantes.ALTERAR_NOTA);
+    }
+
+    private void cancelar(){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_nota, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnSalvar:
+                actionSalvar(item.getActionView());
+                return true;
+
+            case R.id.mnLimpar:
+                actionLimpar(item.getActionView());
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
