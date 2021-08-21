@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Boletim" >
-        <activity android:name=".SobreActivity" >
+        <activity android:name=".SobreActivity"
+            android:parentActivityName=".ListaNotasActivity">
         </activity>
         <activity android:name=".ListaNotasActivity" >
             <intent-filter>
@@ -18,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".ListaNotasActivity">
         </activity>
     </application>
 

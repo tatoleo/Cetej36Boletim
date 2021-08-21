@@ -1,6 +1,7 @@
 package com.entrega1.formCadastro;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -76,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -164,39 +171,30 @@ public class MainActivity extends AppCompatActivity {
      * @param notaDTO : NotaDTO
      */
     private void popularCamposTelaNota(NotaDTO notaDTO) {
-        spAnos.setSelection(2);
-        rgBimestres.setSelected(true);
+        spAnos.setSelection(((ArrayAdapter)spAnos.getAdapter()).getPosition(notaDTO.getAnoLetivo()));
         editTextDisciplina.setText(notaDTO.getDisciplina());
         editTextProfessor.setText(notaDTO.getProfessor());
         editTextAtividade.setText(notaDTO.getAtividade());
         editTextNota.setText(notaDTO.getNota());
         cbRascunho.setChecked(notaDTO.getRascunho());
-    }
-
-
-
-        /**
-         * Salva o objeto NotaDTO em um Array de Notas do Objeto do tipo BaseDadosMemoria
-         * @aythor LeonardoSilva
-         * @since 27/07/2021
-         * @param base  : BaseDadosMemoria
-         * @param nota  : NotaDTO
-         * @return
-         */
-    public static BaseDadosMemoria salvarNotasBaseDados(BaseDadosMemoria base, NotaDTO nota){
-
-        if (base == null) {
-            base = new BaseDadosMemoria();
-            base.setListaNotas(new ArrayList<>());
+        switch (notaDTO.getBimestre()) {
+            case "1º":
+                RadioButton rb1 = (RadioButton) rgBimestres.getChildAt(0);
+                rb1.setChecked(true);
+                break;
+            case "2º":
+                RadioButton rb2 = (RadioButton) rgBimestres.getChildAt(1);
+                rb2.setChecked(true);
+                break;
+            case "3º":
+                RadioButton rb3 = (RadioButton) rgBimestres.getChildAt(2);
+                rb3.setChecked(true);
+                break;
+            case "4º":
+                RadioButton rb4 = (RadioButton) rgBimestres.getChildAt(3);
+                rb4.setChecked(true);
+                break;
         }
-
-        if (base.getListaNotas() == null) {
-            base.setListaNotas(new ArrayList<>());
-        }
-
-        base.getListaNotas().add(nota);
-
-        return base;
     }
 
     /**
@@ -250,11 +248,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             notaDTO = popularNota();
             limparTela();
+            finalizarActivity(notaDTO);
         } catch (MyException me) {
             mensagem = me.getMessage();
             Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            finalizarActivity(null);
         }
-        finalizarActivity(notaDTO);
+
     }
 
     /**
@@ -281,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
-        finalizarActivity(null);
+        cancelar();
     }
 
     /**
@@ -340,6 +341,10 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.mnLimpar:
                 actionLimpar(item.getActionView());
+                return true;
+
+            case android.R.id.home:
+                cancelar();
                 return true;
 
             default:

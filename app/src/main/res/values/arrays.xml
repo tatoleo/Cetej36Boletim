@@ -2,9 +2,11 @@
 <resources>
 
     <string-array name="anosLetivos">
+        <item>@string/ano2019</item>
         <item>@string/ano2020</item>
         <item>@string/ano2021</item>
         <item>@string/ano2022</item>
+        <item>@string/ano2023</item>
     </string-array>
 
     <!-- String Arrays para Activity Lista Notas    -->

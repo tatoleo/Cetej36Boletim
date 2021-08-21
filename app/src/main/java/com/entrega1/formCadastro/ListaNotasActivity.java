@@ -98,6 +98,7 @@ public class ListaNotasActivity extends AppCompatActivity {
 
         listViewNotas.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        // listener para click longo
         listViewNotas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
@@ -114,21 +115,36 @@ public class ListaNotasActivity extends AppCompatActivity {
             }
         });
 
+        // listener para click curto
+        listViewNotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NotaDTO notaDTO = (NotaDTO) listViewNotas.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),
+                        notaDTO.toString(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         popularListView(null);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constantes.PEDIR_NOTA && resultCode == Activity.RESULT_OK) {
-            NotaDTO notaDTO = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
-            if (notaDTO != null) {
-                popularListView(notaDTO);
+            NotaDTO notaDTORetorno = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
+            if (notaDTORetorno != null) {
+                popularListView(notaDTORetorno);
                 Toast.makeText(this, R.string.msgDadosSalvos, Toast.LENGTH_LONG).show();
             }
         } else if (requestCode == Constantes.ALTERAR_NOTA && resultCode == Activity.RESULT_OK) {
-            NotaDTO notaDTO = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
-            if (notaDTO != null) {
-                popularListView(notaDTO);
+            NotaDTO notaDTORetorno = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
+            if (notaDTORetorno != null) {
+                NotaDTO notaDTOSelecionada = baseDadosMemoria.getListaNotas().get(positionListaSelecionada);
+                atualizarDadosNotaSelecionada(notaDTOSelecionada, notaDTORetorno);
+                positionListaSelecionada = -1;
+                listViewNotas.deferNotifyDataSetChanged();
                 Toast.makeText(this, R.string.msgDadosAlterados, Toast.LENGTH_LONG).show();
             }
         }
@@ -136,12 +152,32 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     }
 
-    private void excluirNota(){
-
-        baseDadosMemoria.getListaNotas().remove(positionListaSelecionada);
-        adapterNotas.notifyDataSetChanged();
+    private void atualizarDadosNotaSelecionada(NotaDTO notaDTOSelecionada, NotaDTO notaDTORetorno ){
+        notaDTOSelecionada.setAnoLetivo(notaDTORetorno.getAnoLetivo());
+        notaDTOSelecionada.setBimestre(notaDTORetorno.getBimestre());
+        notaDTOSelecionada.setProfessor(notaDTORetorno.getProfessor());
+        notaDTOSelecionada.setDisciplina(notaDTORetorno.getDisciplina());
+        notaDTOSelecionada.setAtividade(notaDTORetorno.getAtividade());
+        notaDTOSelecionada.setNota(notaDTORetorno.getNota());
+        notaDTOSelecionada.setRascunho(notaDTORetorno.getRascunho());
     }
 
+    /**
+     * Remove da lista de notas a posição selecionada
+     * @author LeonardoSilva
+     * @since 20/08/2021
+     */
+    private void excluirNota(){
+        baseDadosMemoria.getListaNotas().remove(positionListaSelecionada);
+        adapterNotas.notifyDataSetChanged();
+        Toast.makeText(this, R.string.msgNotaExcluida, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Chama a MainActivity para no modo alterar Nota
+     * @author LeonardoSilva
+     * @since 20/08/2021
+     */
     private void alterarNota(){
         NotaDTO nota = baseDadosMemoria.getListaNotas().get(positionListaSelecionada);
         MainActivity.actionAlterarNota(this, nota);
@@ -149,7 +185,7 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     /**
      * Popular ListView com as Notas dos ArrayString
-     * @aythor LeonardoSilva
+     * @author LeonardoSilva
      * @since 31/07/2021
      */
     private void popularListView(NotaDTO notaDTO){
@@ -173,46 +209,6 @@ public class ListaNotasActivity extends AppCompatActivity {
 
 
     }
-
-    /**
-     * Gerar um ArrayList com os ArrayString
-     * @aythor LeonardoSilva
-     * @since 31/07/2021
-     * @return ArrayList<NotaDTO>
-     */
-    private ArrayList<NotaDTO> listarNotasArrayString(){
-
-        ArrayList<NotaDTO> listaNotas = new ArrayList<>();
-
-        String[] listaAnoLetivo = getResources().getStringArray(R.array.listaAnoLetivo);
-        String[] listaAtividade = getResources().getStringArray(R.array.listaAtividade);
-        String[] listaBimestre = getResources().getStringArray(R.array.listaBimestre);
-        String[] listaDisciplina = getResources().getStringArray(R.array.listaDisciplina);
-        String[] listaProfessor = getResources().getStringArray(R.array.listaProfessor);
-
-        Boolean rascunho = false;
-        for(int i = 0; i < listaAnoLetivo.length; i++){
-            NotaDTO notaDTO = new NotaDTO();
-            notaDTO.setAnoLetivo(listaAnoLetivo[i]);
-            notaDTO.setBimestre(listaBimestre[i]);
-            notaDTO.setDisciplina(listaDisciplina[i]);
-            notaDTO.setProfessor(listaProfessor[i]);
-            notaDTO.setAtividade(listaAtividade[i]);
-
-            // gera nota aleatória
-            Double nota = ((Math.random() * (10.0 - 0.0)) + 0.0);
-            // Arredondamento
-            nota = Math.round(nota * 100.0)/100.0;
-            notaDTO.setNota(nota.toString());
-
-            rascunho = !rascunho;
-            notaDTO.setRascunho(rascunho);
-
-            listaNotas.add(notaDTO);
-        }
-        return listaNotas;
-    }
-
 
     /**
      * Action para a Activity Sobre

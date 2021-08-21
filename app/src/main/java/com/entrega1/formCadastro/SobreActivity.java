@@ -1,5 +1,6 @@
 package com.entrega1.formCadastro;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,5 +13,11 @@ public class SobreActivity extends AppCompatActivity {
 
         setTitle(R.string.labelActvSobre);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
     }
+
 }
