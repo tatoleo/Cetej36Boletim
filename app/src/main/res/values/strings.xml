@@ -15,10 +15,10 @@
     <string name="labelProfessor">Teacher</string>
     <string name="labelAtividade">Activity</string>
     <string name="labelNota">Grade</string>
-    <string name="label1Bi">1º</string>
-    <string name="label2Bi">2º</string>
-    <string name="label3Bi">3º</string>
-    <string name="label4Bi">4º</string>
+    <string name="label1Bi">1st</string>
+    <string name="label2Bi">2nd</string>
+    <string name="label3Bi">3nd</string>
+    <string name="label4Bi">4nd</string>
     <string name="labelRascunho">Draft</string>
     <string name="labelPreferencias">Preferences</string>
 
@@ -78,6 +78,6 @@
     <string name="msgSemDados">No data saved!</string>
     <string name="msgDadosSalvos">Data saved successfully!</string>
     <string name="msgNotaExcluida">Grade Deleted Successfully!</string>
-    <string name="msgDadosAlterados">Successfully changed data!</string>
+    <string name="msgDadosAlterados">2nd</string>
 
 </resources>

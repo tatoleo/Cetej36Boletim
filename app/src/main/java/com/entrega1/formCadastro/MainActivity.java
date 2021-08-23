@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.entrega1.dto.BaseDadosMemoria;
 import com.entrega1.dto.NotaDTO;
 import com.entrega1.exception.MyException;
 import com.entrega1.util.Constantes;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox cbRascunho;
 
     private int modo;
+
+    private Boolean preferenciaRascunho = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +67,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        // carregarPreferencias de Rascunho
+        carregarPreferenciasRascunho();
+
         if (bundle != null ){
             modo = bundle.getInt(Constantes.MODO, 0);
 
             if (modo == Constantes.PEDIR_NOTA){
                 setTitle(getString(R.string.labelActvCadstrarNota));
+                if (preferenciaRascunho != null && preferenciaRascunho) {
+                    cbRascunho.setChecked(true);
+                }
 
             } else if (modo == Constantes.ALTERAR_NOTA){
                 setTitle(getString(R.string.labelActvAlterarNota));
@@ -84,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
     }
 
     /**
@@ -177,24 +188,41 @@ public class MainActivity extends AppCompatActivity {
         editTextAtividade.setText(notaDTO.getAtividade());
         editTextNota.setText(notaDTO.getNota());
         cbRascunho.setChecked(notaDTO.getRascunho());
-        switch (notaDTO.getBimestre()) {
-            case "1º":
-                RadioButton rb1 = (RadioButton) rgBimestres.getChildAt(0);
-                rb1.setChecked(true);
-                break;
-            case "2º":
-                RadioButton rb2 = (RadioButton) rgBimestres.getChildAt(1);
-                rb2.setChecked(true);
-                break;
-            case "3º":
-                RadioButton rb3 = (RadioButton) rgBimestres.getChildAt(2);
-                rb3.setChecked(true);
-                break;
-            case "4º":
-                RadioButton rb4 = (RadioButton) rgBimestres.getChildAt(3);
-                rb4.setChecked(true);
-                break;
+
+        if (notaDTO.getBimestre().equals(getString(R.string.labelBimestre))) {
+            RadioButton rb1 = (RadioButton) rgBimestres.getChildAt(0);
+            rb1.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.labelDisciplina))) {
+            RadioButton rb2 = (RadioButton) rgBimestres.getChildAt(1);
+            rb2.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.labelAtividade))) {
+            RadioButton rb3 = (RadioButton) rgBimestres.getChildAt(2);
+            rb3.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.labelNota))) {
+            RadioButton rb4 = (RadioButton) rgBimestres.getChildAt(3);
+            rb4.setChecked(true);
         }
+
+        if (notaDTO.getBimestre().equals(getString(R.string.label1Bi))) {
+            RadioButton rb1 = (RadioButton) rgBimestres.getChildAt(0);
+            rb1.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.label2Bi))) {
+            RadioButton rb2 = (RadioButton) rgBimestres.getChildAt(1);
+            rb2.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.label3Bi))) {
+            RadioButton rb3 = (RadioButton) rgBimestres.getChildAt(2);
+            rb3.setChecked(true);
+
+        } else if (notaDTO.getBimestre().equals(getString(R.string.label4Bi))) {
+            RadioButton rb4 = (RadioButton) rgBimestres.getChildAt(3);
+            rb4.setChecked(true);
+        }
+
     }
 
     /**
@@ -350,5 +378,11 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void carregarPreferenciasRascunho(){
+        SharedPreferences sharedPreferences = getSharedPreferences(Constantes.ARQUIVO_PREFERENCIAS,
+                Context.MODE_PRIVATE);
+        preferenciaRascunho = sharedPreferences.getBoolean(Constantes.ARQUIVO_PREFERENCIAS_RASCUNHO, preferenciaRascunho);
     }
 }

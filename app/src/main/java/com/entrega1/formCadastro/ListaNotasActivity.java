@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import com.entrega1.dto.NotaDTO;
 import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -38,13 +41,12 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     private ListView listViewNotas;
     private ListaNotasAdapter adapterNotas;
-    private BaseDadosMemoria baseDadosMemoria = new BaseDadosMemoria();
+    private BaseDadosMemoria baseDadosMemoria = BaseDadosMemoria.getInstance();
     private ActionMode actionMode;
     private View viewSelecionada;
     private int positionListaSelecionada = -1;
 
-    private String preferenciaOrdenacao = "Bimestre";
-//    private String preferenciaOrdenacao = getString(R.string.labelBimestre);
+    private String preferenciaOrdenacao = null;
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
         @Override
@@ -131,8 +133,11 @@ public class ListaNotasActivity extends AppCompatActivity {
             }
         });
 
-
         popularListView(null);
+
+        carregarPreferenciasOrdenacao();
+
+        ordenarListaPreferencia();
     }
 
     @Override
@@ -216,8 +221,43 @@ public class ListaNotasActivity extends AppCompatActivity {
     }
 
     /**
+     * Ordena a listagem
+     * @aithor LeonardoSilva
+     * @since 16/08/2021
+     */
+    private void ordenarListaPreferencia(){
+        if (preferenciaOrdenacao != null) {
+
+
+            ArrayList<NotaDTO> listaNotas = baseDadosMemoria.getListaNotas();
+
+            if (preferenciaOrdenacao.equals(getString(R.string.labelBimestre))) {
+                // ordenar por bimestre
+                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_BIMESTRE));
+
+            } else if (preferenciaOrdenacao.equals(getString(R.string.labelDisciplina))) {
+                // ordenar por Disciplina
+                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_DISCIPLINA));
+
+            } else if (preferenciaOrdenacao.equals(getString(R.string.labelAtividade))) {
+                // ordenar por Atividade
+                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_ATIVIDADE));
+
+            } else if (preferenciaOrdenacao.equals(getString(R.string.labelNota))) {
+                // ordenar por Nota
+                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_NOTA));
+
+            }
+
+            listViewNotas.deferNotifyDataSetChanged();
+
+        }
+
+    }
+
+    /**
      * Action para a Activity Sobre
-     * @aythor LeonardoSilva
+     * @aithor LeonardoSilva
      * @since 16/08/2021
      * @param view
      */
@@ -289,5 +329,11 @@ public class ListaNotasActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void carregarPreferenciasOrdenacao(){
+        SharedPreferences sharedPreferences = getSharedPreferences(Constantes.ARQUIVO_PREFERENCIAS,
+                Context.MODE_PRIVATE);
+        preferenciaOrdenacao = sharedPreferences.getString(Constantes.ARQUIVO_PREFERENCIAS_ORDENACAO, preferenciaOrdenacao);
     }
 }

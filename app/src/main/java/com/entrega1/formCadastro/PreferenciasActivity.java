@@ -22,7 +22,7 @@ public class PreferenciasActivity extends AppCompatActivity {
     private RadioGroup rgOrdenacao;
     private Switch swRascunho;
 
-    private String preferenciaOrdenacao = "Bimestre";
+    private String preferenciaOrdenacao = null;
     private Boolean preferenciaRascunho = false;
 
     @Override
@@ -34,6 +34,10 @@ public class PreferenciasActivity extends AppCompatActivity {
 
         rgOrdenacao  = findViewById(R.id.rgOrdenacao);
         swRascunho  = findViewById(R.id.swRascunho);
+
+        if (preferenciaOrdenacao == null) {
+            preferenciaOrdenacao = getString(R.string.labelBimestre);
+        }
 
         carregarPreferencias();
     }
