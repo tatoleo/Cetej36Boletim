@@ -7,4 +7,10 @@ public class Constantes {
     public static final int PEDIR_NOTA = 1;
     public static final int ALTERAR_NOTA = 2;
 
+    public static final String ARQUIVO_PREFERENCIAS = "com.entrega1.sharedpreferences.PREFERENCIAS_USUARIO";
+    public static final String ARQUIVO_PREFERENCIAS_ORDENACAO = "ARQUIVO_PREFERENCIAS_ORDENACAO";
+    public static final String ARQUIVO_PREFERENCIAS_RASCUNHO = "ARQUIVO_PREFERENCIAS_RASCUNHO";
+
+
+
 }

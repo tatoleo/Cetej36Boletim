@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,6 +42,9 @@ public class ListaNotasActivity extends AppCompatActivity {
     private ActionMode actionMode;
     private View viewSelecionada;
     private int positionListaSelecionada = -1;
+
+    private String preferenciaOrdenacao = "Bimestre";
+//    private String preferenciaOrdenacao = getString(R.string.labelBimestre);
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
         @Override
@@ -223,7 +228,7 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     /**
      * AdicionarNota
-     * @aythor LeonardoSilva
+     * @author LeonardoSilva
      * @since 16/08/2021
      * @param view
      */
@@ -231,6 +236,17 @@ public class ListaNotasActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(Constantes.MODO, Constantes.PEDIR_NOTA);
         startActivityForResult(intent, Constantes.PEDIR_NOTA);
+    }
+
+    /**
+     * Chama a Activity Preferencias
+     * @author LeonardoSilva
+     * @since 16/08/2021
+     * @param view
+     */
+    public void actionPreferencias(View view){
+        Intent intent = new Intent(this, PreferenciasActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -263,6 +279,10 @@ public class ListaNotasActivity extends AppCompatActivity {
 
             case R.id.mnSobre:
                 actionSobre(item.getActionView());
+                return true;
+
+            case R.id.mnPreferencias:
+                actionPreferencias(item.getActionView());
                 return true;
 
             default:

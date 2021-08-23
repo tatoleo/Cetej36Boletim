@@ -10,4 +10,7 @@
     <item
         android:id="@+id/mnSobre"
         android:title="@string/btSobre" />
+    <item
+        android:id="@+id/mnPreferencias"
+        android:title="@string/labelPreferencias" />
 </menu>

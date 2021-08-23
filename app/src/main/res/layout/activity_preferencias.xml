@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreferenciasActivity">
+
+    <TextView
+        android:id="@+id/lbOrdenacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/labelOrdenacao"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rgOrdenacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/lbOrdenacao"
+        app:layout_constraintTop_toBottomOf="@+id/lbOrdenacao">
+
+        <RadioButton
+            android:id="@+id/rbOrdBimestre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/labelBimestre" />
+
+        <RadioButton
+            android:id="@+id/rbOrdDisciplina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/labelDisciplina" />
+
+        <RadioButton
+            android:id="@+id/rbOrdAtividade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/labelAtividade" />
+
+        <RadioButton
+            android:id="@+id/rbOrdNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/labelNota" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/lbRascunho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/labelRascunho"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/rgOrdenacao"
+        app:layout_constraintTop_toBottomOf="@+id/rgOrdenacao" />
+
+    <Switch
+        android:id="@+id/swRascunho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/labelSelecionadoPadrao"
+        app:layout_constraintStart_toStartOf="@+id/lbRascunho"
+        app:layout_constraintTop_toBottomOf="@+id/lbRascunho" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

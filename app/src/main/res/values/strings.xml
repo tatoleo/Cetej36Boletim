@@ -1,42 +1,48 @@
 <resources>
 
-    <string name="app_name">boletim</string>
+    <string name="app_name">"School Report "</string>
 
-    <string name="labelActvCadstrarNota">Cadastrar Nota</string>
-    <string name="labelActvAlterarNota">Alterar Nota</string>
-    <string name="labelActvNotas">Notas Cadastradas</string>
-    <string name="labelActvSobre">Sobre</string>
+    <string name="labelActvCadstrarNota">Register Grade</string>
+    <string name="labelActvAlterarNota">Change Grade</string>
+    <string name="labelActvNotas">Saved Grades</string>
+    <string name="labelActvSobre">About</string>
+    <string name="labelActvPreferencias">User Preferences</string>
 
     <!-- #### Labels #### -->
-    <string name="labelDisciplina">Disciplina</string>
-    <string name="labelBimestre">Bimestre</string>
-    <string name="labelAnoLetivo">Ano Letivo</string>
-    <string name="labelProfessor">Professor</string>
-    <string name="labelAtividade">Atividade</string>
-    <string name="labelNota">Nota</string>
+    <string name="labelDisciplina">Subjects</string>
+    <string name="labelBimestre">Bimester</string>
+    <string name="labelAnoLetivo">School year</string>
+    <string name="labelProfessor">Teacher</string>
+    <string name="labelAtividade">Activity</string>
+    <string name="labelNota">Grade</string>
     <string name="label1Bi">1º</string>
     <string name="label2Bi">2º</string>
     <string name="label3Bi">3º</string>
     <string name="label4Bi">4º</string>
-    <string name="labelRascunho">Rascunho</string>
+    <string name="labelRascunho">Draft</string>
+    <string name="labelPreferencias">Preferences</string>
 
-    <string name="labelAluno">Aluno</string>
+    <string name="labelAluno">Student</string>
     <string name="labelLeonardo">Leonardo Ramos da Silva</string>
-    <string name="labelCurso">Curso</string>
+    <string name="labelCurso">Course</string>
     <string name="labelEspecializacao">Especialização JAVA XX</string>
     <string name="labelEmail">Email</string>
     <string name="labelEmailAutor">tato.leo@gmail.com</string>
-    <string name="labelDescricao">Descrição</string>
-    <string name="labelDescricaoText">Cadastrar as disciplinas que está cursando e suas notas bimestrais de cada atividade. Sendo assim, com as disciplinas e notas cadastradas, o App mostrará as médias e possibilitará o acompanhamento mais simples do rendimento escolar. No App será mais fácil a visualização de quais as disciplinas está indo bem e quais precisa reforçar os estudos.</string>
+    <string name="labelDescricao">Description</string>
+    <string name="labelDescricaoText">Register the subjects you are taking and their bimonthly grades for each activity. Thus, with the subjects and grades registered, the App will show the averages and allow for a simpler monitoring of school performance. In the App, it will be easier to visualize which subjects are doing well and which ones need to reinforce their studies.</string>
+    <string name="labelOrdenacao">List Orderning</string>
+    <string name="labelSelecionadoPadrao">Selected by Default</string>
+
+
 
     <!-- #### Botões #### -->
-    <string name="btSalvar">Salvar</string>
-    <string name="btLimpar">Limpar</string>
-    <string name="btExibirNotas">Exibir Notas</string>
-    <string name="btSobre">Sobre</string>
-    <string name="btAdicionar">Adicionar</string>
-    <string name="btEditar">Editar</string>
-    <string name="btExcluir">Excluir</string>
+    <string name="btSalvar">Save</string>
+    <string name="btLimpar">Clean</string>
+    <string name="btExibirNotas">grade display</string>
+    <string name="btSobre">About</string>
+    <string name="btAdicionar">Add</string>
+    <string name="btEditar">Edit</string>
+    <string name="btExcluir">Delete</string>
 
     <!-- #### Valores Estáticos #### -->
     <string name="ano2019">2019</string>
@@ -45,14 +51,14 @@
     <string name="ano2022">2022</string>
     <string name="ano2023">2023</string>
 
-    <string name="disciplinaBiologia">Biologia</string>
-    <string name="disciplinaEducacaoFisica">Educação Física</string>
-    <string name="disciplinaHistoria">História</string>
-    <string name="disciplinaPortugues">Português</string>
-    <string name="disciplinaMatematica">Matemática</string>
-    <string name="disciplinaQuimica">Química</string>
-    <string name="disciplinaFisica">Física</string>
-    <string name="disciplinaSociologia">Sociologia</string>
+    <string name="disciplinaBiologia">Biology</string>
+    <string name="disciplinaEducacaoFisica">Physical Education</string>
+    <string name="disciplinaHistoria">\tHistory</string>
+    <string name="disciplinaPortugues">English</string>
+    <string name="disciplinaMatematica">Math</string>
+    <string name="disciplinaQuimica">Chemistry</string>
+    <string name="disciplinaFisica">Physics</string>
+    <string name="disciplinaSociologia">Sociology</string>
 
     <string name="professorJoao">João Silva</string>
     <string name="professorMario">Mario Quintana</string>
@@ -60,18 +66,18 @@
     <string name="professorLeonardo">Leonardo Ramos</string>
     <string name="professorCarlos">Carlos Santos</string>
 
-    <string name="atividadeTrabalho">Trabalho</string>
-    <string name="atividadeApresentacao">Apresentação</string>
-    <string name="atividadeProva">Prova</string>
+    <string name="atividadeTrabalho">Coursework</string>
+    <string name="atividadeApresentacao">Presentation</string>
+    <string name="atividadeProva">Test</string>
 
     <!-- #### Mensagens #### -->
-    <string name="msgNenhum">"Nenhum(a) "</string>
-    <string name="msgFoiSelecionado">" foi selecionado(a)!"</string>
-    <string name="msgFoiInformada">" foi informado(a)!"</string>
-    <string name="msgCamposLimpos">Campos limpos!</string>
-    <string name="msgSemDados">Sem dados salvos!</string>
-    <string name="msgDadosSalvos">Dados salvos com sucesso!</string>
-    <string name="msgNotaExcluida">Nota Excluída com sucesso!</string>
-    <string name="msgDadosAlterados">Dados alterados com sucesso!</string>
+    <string name="msgNenhum">None</string>
+    <string name="msgFoiSelecionado">has been selected!</string>
+    <string name="msgFoiInformada">has been informed!</string>
+    <string name="msgCamposLimpos">Clean fields!</string>
+    <string name="msgSemDados">No data saved!</string>
+    <string name="msgDadosSalvos">Data saved successfully!</string>
+    <string name="msgNotaExcluida">Grade Deleted Successfully!</string>
+    <string name="msgDadosAlterados">Successfully changed data!</string>
 
 </resources>
