@@ -230,19 +230,19 @@ public class ListaNotasActivity extends AppCompatActivity {
 
             if (preferenciaOrdenacao.equals(getString(R.string.labelBimestre))) {
                 // ordenar por bimestre
-                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_BIMESTRE));
+                Collections.sort(listaNotas, new NotaDTO.ComparadorNotas(NotaDTO.ComparadorNotas.POR_BIMESTRE));
 
             } else if (preferenciaOrdenacao.equals(getString(R.string.labelDisciplina))) {
                 // ordenar por Disciplina
-                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_DISCIPLINA));
+                Collections.sort(listaNotas, new NotaDTO.ComparadorNotas(NotaDTO.ComparadorNotas.POR_DISCIPLINA));
 
             } else if (preferenciaOrdenacao.equals(getString(R.string.labelAtividade))) {
                 // ordenar por Atividade
-                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_ATIVIDADE));
+                Collections.sort(listaNotas, new NotaDTO.ComparadorNotas(NotaDTO.ComparadorNotas.POR_ATIVIDADE));
 
             } else if (preferenciaOrdenacao.equals(getString(R.string.labelNota))) {
                 // ordenar por Nota
-                Collections.sort(listaNotas, new BaseDadosMemoria.ComparadorNotas(BaseDadosMemoria.ComparadorNotas.POR_NOTA));
+                Collections.sort(listaNotas, new NotaDTO.ComparadorNotas(NotaDTO.ComparadorNotas.POR_NOTA));
 
             }
 
