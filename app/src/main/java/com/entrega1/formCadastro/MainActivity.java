@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox cbRascunho;
 
     private int modo;
+    private NotaDTO notaDTO;
 
     private Boolean preferenciaRascunho = false;
 
@@ -79,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 if (preferenciaRascunho != null && preferenciaRascunho) {
                     cbRascunho.setChecked(true);
                 }
+                notaDTO = new NotaDTO();
 
             } else if (modo == Constantes.ALTERAR_NOTA){
                 setTitle(getString(R.string.labelActvAlterarNota));
                 NotaDatabase baseDadosRoom = NotaDatabase.getDatabase(this);
                 Long id = bundle.getLong(Constantes.ID_NOTA);
-                NotaDTO notaDTO = baseDadosRoom.notaDao().findById(id);
+                notaDTO = baseDadosRoom.notaDao().findById(id);
                 if (notaDTO != null) {
                     popularCamposTelaNota(notaDTO);
                 }
@@ -126,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
      * @throws MyException
      */
     private NotaDTO popularNota() throws MyException {
-
-        NotaDTO notaDTO = new NotaDTO();
 
         try {
 

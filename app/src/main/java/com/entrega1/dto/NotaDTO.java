@@ -1,9 +1,8 @@
 package com.entrega1.dto;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * @aythor LeonardoSilva
  * @since 27/07/2021
  */
-@Entity (tableName = "tb_nota")
+@Entity(tableName = "tb_nota")
 public class NotaDTO implements Serializable {
 
     private static final long serialVersionUID = 3815873784709209943L;

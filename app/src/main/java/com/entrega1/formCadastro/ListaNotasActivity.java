@@ -1,7 +1,6 @@
 package com.entrega1.formCadastro;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
@@ -18,21 +17,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.entrega1.adapter.ListaNotasAdapter;
-import com.entrega1.dto.BaseDadosMemoria;
 import com.entrega1.dto.NotaDTO;
 import com.entrega1.persitence.NotaDatabase;
 import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -220,12 +214,9 @@ public class ListaNotasActivity extends AppCompatActivity {
             listaNotasRoom = new ArrayList<>();
         }
 
-        if (adapterNotas == null) {
-            adapterNotas = new ListaNotasAdapter(this, listaNotasRoom);
-            listViewNotas.setAdapter(adapterNotas);
-        } else {
-            listViewNotas.deferNotifyDataSetChanged();
-        }
+        adapterNotas = new ListaNotasAdapter(this, listaNotasRoom);
+        listViewNotas.setAdapter(adapterNotas);
+
         ordenarListaPreferencia(listaNotasRoom);
     }
 
