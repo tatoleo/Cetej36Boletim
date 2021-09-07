@@ -1,5 +1,10 @@
 package com.entrega1.dto;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -7,19 +12,44 @@ import java.io.Serializable;
  * @aythor LeonardoSilva
  * @since 27/07/2021
  */
+@Entity (tableName = "tb_nota")
 public class NotaDTO implements Serializable {
 
     private static final long serialVersionUID = 3815873784709209943L;
 
+    @PrimaryKey(autoGenerate = true)
+    private Long id;
+
+    @NonNull
     private String anoLetivo;
+
+    @NonNull
     private String bimestre;
+
+    @NonNull
     private String disciplina;
+
+    @NonNull
     private String professor;
+
+    @NonNull
     private String atividade;
+
+    @NonNull
     private String nota;
+
+    @NonNull
     private Boolean rascunho;
 
     public NotaDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAnoLetivo() {

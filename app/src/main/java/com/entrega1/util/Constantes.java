@@ -4,6 +4,7 @@ public class Constantes {
 
     public static final String MODO = "MODO";
     public static final String VALOR_NOTA = "VALOR_NOTA";
+    public static final String ID_NOTA = "ID_NOTA";
     public static final int PEDIR_NOTA = 1;
     public static final int ALTERAR_NOTA = 2;
 

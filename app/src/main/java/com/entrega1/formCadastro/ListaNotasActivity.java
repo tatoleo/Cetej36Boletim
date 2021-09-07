@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 import com.entrega1.adapter.ListaNotasAdapter;
 import com.entrega1.dto.BaseDadosMemoria;
 import com.entrega1.dto.NotaDTO;
+import com.entrega1.persitence.NotaDatabase;
 import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
@@ -41,7 +44,6 @@ public class ListaNotasActivity extends AppCompatActivity {
 
     private ListView listViewNotas;
     private ListaNotasAdapter adapterNotas;
-    private BaseDadosMemoria baseDadosMemoria = BaseDadosMemoria.getInstance();
     private ActionMode actionMode;
     private View viewSelecionada;
     private int positionListaSelecionada = -1;
@@ -63,14 +65,17 @@ public class ListaNotasActivity extends AppCompatActivity {
 
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+            NotaDTO notaDTO = (NotaDTO) listViewNotas.getItemAtPosition(positionListaSelecionada);
+
             switch (item.getItemId()){
                 case R.id.mnEditar:
-                    alterarNota();
+                    alterarNota(notaDTO);
                     mode.finish();
                     return true;
 
                 case R.id.mnExcluir:
-                    excluirNota();
+                    excluirNota(notaDTO);
                     mode.finish();
                     return true;
 
@@ -102,7 +107,6 @@ public class ListaNotasActivity extends AppCompatActivity {
         setTitle(R.string.labelActvNotas);
 
         listViewNotas = findViewById(R.id.listViewNotas);
-
         listViewNotas.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // listener para click longo
@@ -133,43 +137,20 @@ public class ListaNotasActivity extends AppCompatActivity {
             }
         });
 
-        popularListView(null);
-
         carregarPreferenciasOrdenacao();
-
-        ordenarListaPreferencia();
+        popularListView();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constantes.PEDIR_NOTA && resultCode == Activity.RESULT_OK) {
-            NotaDTO notaDTORetorno = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
-            if (notaDTORetorno != null) {
-                popularListView(notaDTORetorno);
-                Toast.makeText(this, R.string.msgDadosSalvos, Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(this, R.string.msgDadosSalvos, Toast.LENGTH_LONG).show();
         } else if (requestCode == Constantes.ALTERAR_NOTA && resultCode == Activity.RESULT_OK) {
-            NotaDTO notaDTORetorno = (NotaDTO) data.getSerializableExtra(Constantes.VALOR_NOTA);
-            if (notaDTORetorno != null) {
-                NotaDTO notaDTOSelecionada = baseDadosMemoria.getListaNotas().get(positionListaSelecionada);
-                atualizarDadosNotaSelecionada(notaDTOSelecionada, notaDTORetorno);
-                positionListaSelecionada = -1;
-                listViewNotas.deferNotifyDataSetChanged();
-                Toast.makeText(this, R.string.msgDadosAlterados, Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(this, R.string.msgDadosAlterados, Toast.LENGTH_LONG).show();
         }
+        // atualiza a listView
+        popularListView();
         super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    private void atualizarDadosNotaSelecionada(NotaDTO notaDTOSelecionada, NotaDTO notaDTORetorno ){
-        notaDTOSelecionada.setAnoLetivo(notaDTORetorno.getAnoLetivo());
-        notaDTOSelecionada.setBimestre(notaDTORetorno.getBimestre());
-        notaDTOSelecionada.setProfessor(notaDTORetorno.getProfessor());
-        notaDTOSelecionada.setDisciplina(notaDTORetorno.getDisciplina());
-        notaDTOSelecionada.setAtividade(notaDTORetorno.getAtividade());
-        notaDTOSelecionada.setNota(notaDTORetorno.getNota());
-        notaDTOSelecionada.setRascunho(notaDTORetorno.getRascunho());
     }
 
     /**
@@ -177,10 +158,43 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @author LeonardoSilva
      * @since 20/08/2021
      */
-    private void excluirNota(){
-        baseDadosMemoria.getListaNotas().remove(positionListaSelecionada);
-        adapterNotas.notifyDataSetChanged();
-        Toast.makeText(this, R.string.msgNotaExcluida, Toast.LENGTH_LONG).show();
+    private void excluirNota(NotaDTO notaDTO){
+
+        String mensagem = getString(R.string.dDesejaExcluir) + notaDTO.getNota() + "?";
+
+        DialogInterface.OnClickListener listener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                NotaDatabase baseDadosRoom = NotaDatabase.getDatabase(ListaNotasActivity.this);
+                                baseDadosRoom.notaDao().delete(notaDTO);
+                                popularListView();
+                                Toast.makeText(ListaNotasActivity.this, R.string.msgNotaExcluida, Toast.LENGTH_LONG).show();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.dConfirm);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setMessage(mensagem);
+
+        builder.setPositiveButton(R.string.dRespSim, listener);
+        builder.setNegativeButton(R.string.dRespNao, listener);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     /**
@@ -188,9 +202,8 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @author LeonardoSilva
      * @since 20/08/2021
      */
-    private void alterarNota(){
-        NotaDTO nota = baseDadosMemoria.getListaNotas().get(positionListaSelecionada);
-        MainActivity.actionAlterarNota(this, nota);
+    private void alterarNota(NotaDTO notaDTO){
+        MainActivity.actionAlterarNota(this, notaDTO);
     }
 
     /**
@@ -198,26 +211,22 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @author LeonardoSilva
      * @since 31/07/2021
      */
-    private void popularListView(NotaDTO notaDTO){
+    private void popularListView(){
 
-        ArrayList<NotaDTO> listaNotas = baseDadosMemoria.getListaNotas();
+        NotaDatabase baseDadosRoom = NotaDatabase.getDatabase(this);
+        List<NotaDTO> listaNotasRoom = baseDadosRoom.notaDao().listAll();
 
-        if (listaNotas == null) {
-            listaNotas = new ArrayList<>();
+        if (listaNotasRoom == null) {
+            listaNotasRoom = new ArrayList<>();
         }
 
         if (adapterNotas == null) {
-            adapterNotas = new ListaNotasAdapter(this, listaNotas);
-        }
-
-        if (notaDTO != null) {
-            listaNotas.add(notaDTO);
-            listViewNotas.deferNotifyDataSetChanged();
-        } else {
+            adapterNotas = new ListaNotasAdapter(this, listaNotasRoom);
             listViewNotas.setAdapter(adapterNotas);
+        } else {
+            listViewNotas.deferNotifyDataSetChanged();
         }
-
-
+        ordenarListaPreferencia(listaNotasRoom);
     }
 
     /**
@@ -225,11 +234,8 @@ public class ListaNotasActivity extends AppCompatActivity {
      * @aithor LeonardoSilva
      * @since 16/08/2021
      */
-    private void ordenarListaPreferencia(){
+    private void ordenarListaPreferencia(List<NotaDTO> listaNotas){
         if (preferenciaOrdenacao != null) {
-
-
-            ArrayList<NotaDTO> listaNotas = baseDadosMemoria.getListaNotas();
 
             if (preferenciaOrdenacao.equals(getString(R.string.labelBimestre))) {
                 // ordenar por bimestre

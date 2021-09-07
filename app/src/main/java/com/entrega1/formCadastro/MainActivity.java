@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.entrega1.dto.NotaDTO;
 import com.entrega1.exception.MyException;
+import com.entrega1.persitence.NotaDatabase;
 import com.entrega1.util.Constantes;
 
 import java.util.ArrayList;
@@ -81,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
             } else if (modo == Constantes.ALTERAR_NOTA){
                 setTitle(getString(R.string.labelActvAlterarNota));
-                NotaDTO notaDTO = (NotaDTO) intent.getSerializableExtra(Constantes.VALOR_NOTA);
+                NotaDatabase baseDadosRoom = NotaDatabase.getDatabase(this);
+                Long id = bundle.getLong(Constantes.ID_NOTA);
+                NotaDTO notaDTO = baseDadosRoom.notaDao().findById(id);
                 if (notaDTO != null) {
                     popularCamposTelaNota(notaDTO);
                 }
@@ -265,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Ação do botão Salvar
-     * @aythor LeonardoSilva
+     * @author LeonardoSilva
      * @since 27/07/2021
      * @param view  : View
      */
@@ -275,6 +278,13 @@ public class MainActivity extends AppCompatActivity {
         NotaDTO notaDTO = null;
         try {
             notaDTO = popularNota();
+            NotaDatabase baseDadosRoom = NotaDatabase.getDatabase(this);
+            if (modo == Constantes.PEDIR_NOTA) {
+                baseDadosRoom.notaDao().insert(notaDTO);
+            }else if (modo == Constantes.ALTERAR_NOTA) {
+                baseDadosRoom.notaDao().update(notaDTO);
+            }
+            setResult(Activity.RESULT_OK);
             limparTela();
             finalizarActivity(notaDTO);
         } catch (MyException me) {
@@ -293,13 +303,11 @@ public class MainActivity extends AppCompatActivity {
      * @param notaDTO
      */
     private void finalizarActivity(NotaDTO notaDTO){
-        Intent intentRetorno = new Intent();
         if (notaDTO != null &&
                 (modo == Constantes.PEDIR_NOTA  || modo == Constantes.ALTERAR_NOTA )) {
-            intentRetorno.putExtra(Constantes.VALOR_NOTA, notaDTO);
-            setResult(Activity.RESULT_OK, intentRetorno);
+            setResult(Activity.RESULT_OK);
         } else {
-            setResult(Activity.RESULT_CANCELED, intentRetorno);
+            setResult(Activity.RESULT_CANCELED);
         }
         finish();
 
@@ -345,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra(Constantes.MODO, Constantes.ALTERAR_NOTA);
-        intent.putExtra(Constantes.VALOR_NOTA, nota);
+        intent.putExtra(Constantes.ID_NOTA, nota.getId());
         activity.startActivityForResult(intent,  Constantes.ALTERAR_NOTA);
     }
 

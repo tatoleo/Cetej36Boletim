@@ -80,4 +80,10 @@
     <string name="msgNotaExcluida">Nota Excluída com sucesso!</string>
     <string name="msgDadosAlterados">Dados alterados com sucesso!</string>
 
+    <!-- #### Dialog #### -->
+    <string name="dDesejaExcluir">"Deseja realmente excluir a nota "</string>
+    <string name="dConfirm">Confirmação</string>
+    <string name="dRespSim">Sim</string>
+    <string name="dRespNao">Não</string>
+
 </resources>

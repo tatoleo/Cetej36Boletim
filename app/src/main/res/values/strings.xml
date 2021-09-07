@@ -78,6 +78,12 @@
     <string name="msgSemDados">No data saved!</string>
     <string name="msgDadosSalvos">Data saved successfully!</string>
     <string name="msgNotaExcluida">Grade Deleted Successfully!</string>
-    <string name="msgDadosAlterados">2nd</string>
+    <string name="msgDadosAlterados">Successfully changed data!</string>
+
+    <!-- #### Dialog #### -->
+    <string name="dDesejaExcluir">"Do you really want to delete the note "</string>
+    <string name="dConfirm">Confirm</string>
+    <string name="dRespSim">Yes</string>
+    <string name="dRespNao">No</string>
 
 </resources>
