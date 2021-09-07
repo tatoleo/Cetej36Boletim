@@ -82,4 +82,14 @@
       app:layout_constraintStart_toStartOf="@+id/lbDescricao"
       app:layout_constraintTop_toBottomOf="@+id/lbDescricao" />
 
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="245dp"
+      android:layout_height="79dp"
+      android:layout_marginTop="32dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tvDescricao"
+      app:srcCompat="@drawable/utfpr" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
